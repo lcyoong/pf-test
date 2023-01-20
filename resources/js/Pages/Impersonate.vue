@@ -19,7 +19,7 @@ import NotificationDropdown from "@/Components/NotificationDropdown.vue";
 
 defineProps({
     user: Object,
-    errors: Array
+    errors: Object
 })
 
 </script>

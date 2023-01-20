@@ -30,6 +30,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['prefix' => 'notifications'], function () {
         Route::get('/', [NotificationController::class, 'index'])->name('notifications.index');
+        Route::post('/', [NotificationController::class, 'store'])->name('notification.store');
     });
 
     Route::group(['prefix' => 'impersonate/{user}'], function () {

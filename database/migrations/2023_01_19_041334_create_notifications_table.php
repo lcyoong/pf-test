@@ -18,6 +18,7 @@ return new class extends Migration
             $table->enum('type', explode(',', env('NOTIFICATION_TYPE')));
             $table->text('text');
             $table->datetime('expire_at')->nullable();
+            $table->text('send_to')->nullable();
             $table->timestamps();
         });
     }

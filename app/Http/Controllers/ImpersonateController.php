@@ -15,7 +15,9 @@ class ImpersonateController extends Controller
      */
     public function index(Request $request, User $user)
     {
-        $user->load('activeNotifications');
+        $user->load(['activeNotifications' => function($query) {
+            $query->latest();
+        }]);
 
         return Inertia::render('Impersonate', compact('user'));
     }

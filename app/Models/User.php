@@ -62,7 +62,7 @@ class User extends Authenticatable
      */
     public function activeNotifications()
     {
-        return $this->notifications()->wherePivot('read', 0)->where('expire_at', '>', Carbon::now());
+        return $this->notifications()->withPivot('id')->wherePivot('read', 0)->where('expire_at', '>', Carbon::now());
     }    
 
     /**

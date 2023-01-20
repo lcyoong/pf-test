@@ -19,6 +19,8 @@
         "@inertiajs/inertia-vue3": "^0.6.0",
         "@inertiajs/vue3": "^1.0.0",
         "@vitejs/plugin-vue": "^4.0.0",
+        "@vueform/multiselect": "^2.5.8",
+        "v-calendar": "^3.0.0-alpha.8",
         "vue": "^3.2.36",
         "vue-loader": "^17.0.1"
     }
