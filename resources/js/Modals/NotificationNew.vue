@@ -22,13 +22,13 @@
           <ValidationError :error="localErrors?.newNotification?.expire_at"/>
         </div>
         <div class="flex flex-col space-y-1">
-          <label class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Send To</label>
+          <label class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Send To (If left blank, this notification will be sent to all users.)</label>
           <Multiselect
             v-model="form.send_to"
             mode="tags"
             :searchable="true"
             :options="users"
-          />
+          />          
           <ValidationError :error="localErrors?.newNotification?.send_to"/>
         </div>        
         <button type="submit" class="flex-none justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Create</button>
