@@ -33,7 +33,7 @@ class UpdateUser extends FormRequest
                 'max:225',
                 Rule::unique('users', 'email')->ignore($this->input('id'), 'id'),
             ],
-            'phone' => ['required']
+            'phone' => ['required', new VerifyRealPhoneNo]
         ];
     }
 }
