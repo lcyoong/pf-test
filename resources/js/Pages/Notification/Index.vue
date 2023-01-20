@@ -28,6 +28,7 @@
                   <tr>
                     <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Type</th>
                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Text</th>
+                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Created At</th>
                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Expired At</th>
                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Send To</th>
                     <!-- <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
@@ -39,9 +40,12 @@
                   <tr v-for="notification in notifications.data" :key="notification.email">
                     <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{ notification.type }}</td>
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ notification.text }}</td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ notification.created_at_friendly }}</td>
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ notification.expire_at }}</td>
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 space-x-1">
-                      <span class="bg-green-600 text-white text-xs rounded px-2 py-0.5" v-for="user in notification.send_to">{{ users[user] }}</span>
+                      <span class="bg-green-600 text-white text-xs rounded px-2 py-0.5" v-for="user in notification.send_to">
+                        <Link :href="route('impersonate', {user: user })">{{ users[user] }}</Link>
+                      </span>
                     </td>
                     <!-- <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                       <a href="#" class="text-indigo-600 hover:text-indigo-900" @click="editnotification(notification)"
