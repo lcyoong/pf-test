@@ -18,7 +18,10 @@ class NotificationController extends Controller
         $search = $request->search;
 
         $notifications = Notification::where('text', 'like', "%$search%")
-                            ->orWhere('type', 'like', "%$search%")                            
+                            ->orWhere('type', 'like', "%$search%")
+                            ->orWhereHas('users', function($query) use($search) {
+                                $query->where('name', 'like', "%$search%");
+                            })
                             ->latest()
                             ->paginate(10)
                             ->withQueryString();

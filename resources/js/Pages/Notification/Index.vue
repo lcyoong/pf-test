@@ -15,7 +15,7 @@
 
       <!--Filter-->
       <div class="sm:flex-auto">
-        <input type="email" name="email" v-model="search" id="email" class="block w-full rounded-md border-gray-300 border focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm py-3 px-2" placeholder="Filter by type and text"/>
+        <input type="email" name="email" v-model="search" id="email" class="block w-full rounded-md border-gray-300 border focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm py-3 px-2" placeholder="Filter by notification type and text; as well as recipient name"/>
       </div>
 
       <!--Table-->
