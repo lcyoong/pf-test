@@ -45,7 +45,7 @@
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ user.email }}</td>
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ user.phone }}</td>
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ user.show_notification }}</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ user.active_notification_count }}</td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ user.active_notification_count }} of {{ user.all_notification_count }}</td>
                     <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 space-x-3">
                       <a href="#" class="text-indigo-600 hover:text-indigo-900" @click.prevent="editUser(user)"
                         >Edit<span class="sr-only">, {{ user.name }}</span></a

@@ -27,7 +27,8 @@ class User extends Authenticatable
     ];
 
     protected $appends = [
-        'active_notification_count'
+        'active_notification_count',
+        'all_notification_count'
     ];    
 
     /**
@@ -71,5 +72,13 @@ class User extends Authenticatable
     protected function getActiveNotificationCountAttribute()
     {
         return $this->activeNotifications()->count();
-    }    
+    }
+
+    /**
+     * Accessor - total notification count of user.
+     */
+    protected function getAllNotificationCountAttribute()
+    {
+        return $this->notifications()->count();
+    }        
 }
