@@ -64,7 +64,7 @@
     <!--Pagination-->
     <Pagination :pagination="notifications"/>
   </Layout>
-  <NotificationNew ref="newNotificationModalRef" :users="users" :types="types"/>
+  <NotificationNew ref="newNotificationModalRef" :users="users" :types="types" :errors="errors"/>
 </template>
 
 <script setup>

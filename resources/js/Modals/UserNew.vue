@@ -1,27 +1,27 @@
 <template>
-  <Modal ref="modalRef">
+  <Modal ref="modalRef" @close="localErrors = null">
     <p class="text-xl font-bold">New User</p>
     <div class="py-5">
       <form class="py-2 space-y-2" @submit.prevent="createUser">
         <div class="flex flex-col space-y-1">
           <label class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Name</label>
           <input type="text" v-model="form.name" class="border block w-full min-w-0 flex-1 rounded border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 py-2 px-3 sm:text-sm" />
-          <ValidationError :error="errors?.newUser?.name"/>
+          <ValidationError :error="localErrors?.newUser?.name"/>
         </div>
         <div class="flex flex-col space-y-1">
           <label class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Phone</label>
           <input type="text" v-model="form.phone" class="border block w-full min-w-0 flex-1 rounded border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 py-2 px-3 sm:text-sm" />
-          <ValidationError :error="errors?.newUser?.phone"/>
+          <ValidationError :error="localErrors?.newUser?.phone"/>
         </div>
         <div class="flex flex-col space-y-1">
           <label class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Email</label>
           <input type="text" v-model="form.email" class="border block w-full min-w-0 flex-1 rounded border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 py-2 px-3 sm:text-sm" />
-          <ValidationError :error="errors?.newUser?.email"/>
+          <ValidationError :error="localErrors?.newUser?.email"/>
         </div>
         <div class="flex flex-col space-y-1">
           <label class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Show Notifications</label>
           <Toggle 
-            :switch="form.show_notification" 
+            :switch="!!form.show_notification" 
             @toggleOn="form.show_notification = 1"
             @toggleOff="form.show_notification = 0"
           />
@@ -45,6 +45,8 @@ let props = defineProps({
 
 const modalRef = ref()
 
+let localErrors = ref(props.errors)
+
 const form = useForm({
   name: '',
   phone: '',
@@ -64,12 +66,18 @@ function createUser() {
     errorBag: 'newUser',
     preserveState: true,
     preserveScroll: true,
-    onSuccess: page => {          
+    onSuccess: page => {
+      form.reset()
+      localErrors.value = null
       emit('userUpdated')
       modalRef.value.close()
     }
   }); 
 }
+
+watch(() => props.errors, value => {
+  localErrors.value = value
+})
 
 defineExpose({
     show
