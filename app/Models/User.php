@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'show_notification'
     ];
 
     /**
@@ -41,4 +43,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * The notifications of the user.
+     */
+    public function notifications()
+    {
+        return $this->belongsToMany(Notification::class, 'user_notifications', 'user', 'notification');
+    }    
 }
