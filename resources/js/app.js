@@ -1,8 +1,8 @@
 import './bootstrap';
-
 import { createApp, h } from 'vue';
 import { createInertiaApp, Link } from '@inertiajs/inertia-vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+import ValidationError from "@/Components/ValidationError.vue";
 import { ZiggyVue } from 'ziggy-vue';
 import route from 'ziggy';
 import '../css/app.css';
@@ -14,6 +14,7 @@ createInertiaApp({
       .use(plugin)
       .use(ZiggyVue, Ziggy)
       .component('Link', Link)
+      .component('ValidationError', ValidationError)
       .mount(el)
   },
 });

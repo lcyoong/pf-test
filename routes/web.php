@@ -22,5 +22,6 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'users'], function () {
         Route::get('/', [UserController::class, 'index'])->name('users.index');
+        Route::post('/{user}', [UserController::class, 'update'])->name('user.update');
     });
 });

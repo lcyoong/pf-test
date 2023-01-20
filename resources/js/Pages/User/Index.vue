@@ -55,6 +55,8 @@
     <Pagination :pagination="users"/>
   </Layout>
 
+  <UserEdit ref="editUserModalRef" :user="userToEdit" :errors="errors"/>
+
 </template>
 
 <script setup>
@@ -64,6 +66,7 @@ import { Inertia } from '@inertiajs/inertia';
 import Layout from "@/Layout/Master.vue";
 import MainNav from "@/Components/MainNav.vue";
 import Pagination from "@/Components/Pagination.vue";
+import UserEdit from "@/Modals/UserEdit.vue";
 
 let props = defineProps({
     users: Object,
@@ -75,6 +78,8 @@ let search = ref(props.search)
 
 let userToEdit = ref()
 
+let editUserModalRef = ref()
+
 watch(search, debounce(function (value) {
   Inertia.get('/admin/users', { search: value }, { preserveState: true, replace: true });
 }, 300));
@@ -82,5 +87,6 @@ watch(search, debounce(function (value) {
 function editUser(value)
 {
     userToEdit.value = value
+    editUserModalRef.value.show()
 }
 </script>
