@@ -54,11 +54,11 @@ class Notification extends Model
     /**
      * Friendly created at date
      */
-    public function getCreatedAtFriendlyAttribute($value)
+    public function getCreatedAtFriendlyAttribute()
     {
-        $carbon = new Carbon($value);
+        $carbon = new Carbon($this->created_at);
 
-        return $carbon->format('d M Y');
+        return $carbon->format('d M Y H:i:s');
     }
 
 }
