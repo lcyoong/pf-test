@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreUser;
 use App\Http\Requests\UpdateUser;
 
 class UserController extends Controller
@@ -27,6 +28,16 @@ class UserController extends Controller
 
         return Inertia::render('User/Index', compact('users', 'search'));
     }
+
+    /**
+     * Store new user
+     */
+    public function store(StoreUser $request)
+    {
+        User::create($request->input());
+
+        return back();
+    }    
 
     /**
      * Update user

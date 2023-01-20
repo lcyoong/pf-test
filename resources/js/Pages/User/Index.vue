@@ -5,6 +5,15 @@
       <!--Title and add button-->
       <div class="flex items-center justify-between">
         <h1 class="text-xl font-bold py-3">Users</h1>
+        <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+          <button 
+            type="button" 
+            class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+            @click.prevent="newUserModalRef.show()"
+            >
+            Add user
+          </button>
+        </div>        
       </div>
 
       <!--Filter-->
@@ -56,6 +65,7 @@
   </Layout>
 
   <UserEdit ref="editUserModalRef" :user="userToEdit" :errors="errors"/>
+  <UserNew ref="newUserModalRef" :errors="errors"/>
 
 </template>
 
@@ -67,6 +77,7 @@ import Layout from "@/Layout/Master.vue";
 import MainNav from "@/Components/MainNav.vue";
 import Pagination from "@/Components/Pagination.vue";
 import UserEdit from "@/Modals/UserEdit.vue";
+import UserNew from "@/Modals/UserNew.vue";
 
 let props = defineProps({
     users: Object,
@@ -79,6 +90,8 @@ let search = ref(props.search)
 let userToEdit = ref()
 
 let editUserModalRef = ref()
+
+let newUserModalRef = ref()
 
 watch(search, debounce(function (value) {
   Inertia.get('/admin/users', { search: value }, { preserveState: true, replace: true });
