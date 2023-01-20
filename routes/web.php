@@ -4,6 +4,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ImpersonateController;
+use App\Http\Controllers\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,10 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/', [UserController::class, 'index'])->name('users.index');
         Route::post('/{user}', [UserController::class, 'update'])->name('user.update');
         Route::post('/', [UserController::class, 'store'])->name('user.store');
+    });
+
+    Route::group(['prefix' => 'notifications'], function () {
+        Route::get('/', [NotificationController::class, 'index'])->name('notifications.index');
     });
 
     Route::group(['prefix' => 'impersonate/{user}'], function () {

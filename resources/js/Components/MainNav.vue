@@ -3,6 +3,7 @@
     <nav class="flex items-center space-x-4">
       <div class="text-5xl font-bold">Pf</div>
       <Link :href="route('users.index')"><div class="bg-red-700 text-white px-4 py-2 rounded font-semibold hover:bg-red-600">Users</div></Link>
+      <Link :href="route('notifications.index')"><div class="bg-red-700 text-white px-4 py-2 rounded font-semibold hover:bg-red-600">Notifications</div></Link>
     </nav>
     <slot name="right"></slot>
   </div>
