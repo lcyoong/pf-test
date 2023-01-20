@@ -3,6 +3,7 @@
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ImpersonateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +26,9 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/{user}', [UserController::class, 'update'])->name('user.update');
         Route::post('/', [UserController::class, 'store'])->name('user.store');
     });
+
+    Route::group(['prefix' => 'impersonate/{user}'], function () {
+        Route::get('/', [ImpersonateController::class, 'index'])->name('impersonate');
+        Route::post('/read/{notification}', [ImpersonateController::class, 'read'])->name('impersonate.read');
+    });    
 });
