@@ -3,10 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Carbon\Carbon;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -24,6 +25,10 @@ class User extends Authenticatable
         'phone',
         'show_notification'
     ];
+
+    protected $appends = [
+        'active_notification_count'
+    ];    
 
     /**
      * The attributes that should be hidden for serialization.
@@ -50,5 +55,21 @@ class User extends Authenticatable
     public function notifications()
     {
         return $this->belongsToMany(Notification::class, 'user_notifications', 'user', 'notification');
+    }    
+
+    /**
+     * The active notifications of the user.
+     */
+    public function activeNotifications()
+    {
+        return $this->notifications()->wherePivot('read', 0)->where('expire_at', '>', Carbon::now());
+    }    
+
+    /**
+     * Accessor - active notification count of user.
+     */
+    protected function getActiveNotificationCountAttribute()
+    {
+        return $this->activeNotifications()->count();
     }    
 }
